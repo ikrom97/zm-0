@@ -1,15 +1,9 @@
-import style from './style.module.css';
-import classNames from 'classnames';
+import { StyledContainer } from './styled';
 
-export default function Container({ children, className, as, ...rest }) {
-  const TagName = as || 'div';
-
+export default function Container({ children, ...rest }) {
   return (
-    <TagName
-      className={classNames(style.container, className)}
-      {...rest}
-    >
+    <StyledContainer {...rest}>
       {children}
-    </TagName>
+    </StyledContainer>
   );
 }

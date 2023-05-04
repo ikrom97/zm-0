@@ -1,17 +1,14 @@
-import classNames from "classnames";
 import Link from "next/link";
-import style from './style.module.css';
+import { StyledButton } from "./styled";
 
-export default function Button({ className, href, children, ...rest }) {
-  const TagName = href ? Link : 'button';
-
+export default function Button({ href, children, ...rest }) {
   return (
-    <TagName
-      className={classNames(style.button, className)}
+    <StyledButton
       href={href}
+      as={href ? Link : false}
       {...rest}
     >
       {children}
-    </TagName>
+    </StyledButton>
   );
 }

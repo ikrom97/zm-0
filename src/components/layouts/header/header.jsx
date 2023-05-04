@@ -1,33 +1,29 @@
-import style from './style.module.css';
-import Container from "@/components/ui/container/container";
 import Logo from "@/components/ui/logo/logo";
 import Navigation from "../navigation/navigation";
-import Button from '@/components/ui/button/button';
 import MenuIcon from '@/components/icons/menu-icon';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import CloseIcon from '@/components/icons/close-icon';
+import { HeaderContainer, MenuToggler, StyledHeader } from './styled';
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuShown, setIsMenuShown] = useState(false);
   const { t } = useTranslation('common');
 
   return (
-    <header className={style.header}>
-      <Container className={style.container}>
+    <StyledHeader>
+      <HeaderContainer>
         <Logo />
 
-        <Button
-          className={style.button}
+        <MenuToggler
           title={t('toggleMenu')}
-          type="button"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          onClick={() => setIsMenuShown(!isMenuShown)}
         >
-          {isMenuOpen ? <CloseIcon width={18} /> : <MenuIcon />}
-        </Button>
+          {isMenuShown ? <CloseIcon width={18} /> : <MenuIcon />}
+        </MenuToggler>
 
-        <Navigation isOpen={isMenuOpen} />
-      </Container>
-    </header>
+        <Navigation isShown={isMenuShown} />
+      </HeaderContainer>
+    </StyledHeader>
   );
 }
