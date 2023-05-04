@@ -1,0 +1,18 @@
+.navigation {
+  flex-direction: column;
+  min-width: 100vw;
+  position: relative;
+  left: -5vw; 
+  display: none;
+  visibility: hidden;
+}
+
+.navigationItem {
+  border-radius: 0;
+  border-top: 1px solid var(--base-grey);
+}
+
+.menuOpen {
+  display: flex;
+  visibility: visible;
+}

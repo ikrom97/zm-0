@@ -1,0 +1,23 @@
+.header {
+  background-color: var(--base-primary);
+  color: var(--base-white);
+  padding: 16px 0;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.button {
+  color: var(--base-secondary);
+}
+
+@media screen and (min-width: 768px) {
+  .button {
+    display: none;
+  }
+}

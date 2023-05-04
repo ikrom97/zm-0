@@ -1,0 +1,28 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 24px;
+}
+
+.footer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 0;
+}
+
+@media screen and (max-width: 1200px) {
+  .main {
+    position: relative;
+  }
+
+  .footer {
+    position: absolute;
+    top: 100%;
+    margin-top: 205px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
