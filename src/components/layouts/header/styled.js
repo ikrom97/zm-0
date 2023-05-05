@@ -7,8 +7,12 @@ export const StyledHeader = styled.header`
   color: ${({ theme }) => theme.white};
   padding: 16px 0;
 
-  @media (min-width: 1200px) {
+  @media (min-width: 768px) {
     padding: 24px 0;
+  }
+
+  @media (min-width: 1200px) {
+    padding: 32px 0;
   }
 `;
 
@@ -28,5 +32,6 @@ export const MenuToggler = styled(Button).attrs({
   @media (min-width: 768px) {
     display: none;
     visibility: hidden;
+    color: ${({ theme }) => theme.secondary};
   }
 `;

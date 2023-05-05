@@ -24,9 +24,14 @@ export const StyledNavigation = styled.nav`
   }
 `;
 
-export const NavigationItem = styled(Button)`
+export const NavigationItem = styled(({ isActive, children, ...rest }) => (
+  <Button {...rest}>{children}</Button>
+))`
   border-radius: 0;
   border-top: 1px solid ${({ theme }) => theme.gray};
+  ${({ isActive, theme }) => isActive && `
+    background-color: ${theme.secondary};
+  `}
 
   @media (min-width: 768px) {
     border-top: none;
