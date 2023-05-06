@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  name     String
+  surname  String
+  login    String @unique
+  password String
+}
+
+model Locale {
+  id     Int     @id @default(autoincrement())
+  title  String
+  locale String
+  Quote  Quote[]
+  Tag    Tag[]
+  Post   Post[]
+}
+
+model Quote {
+  id       Int            @id @default(autoincrement())
+  quote    String
+  tags     QuotesOnTags[]
+  locale   Locale         @relation(fields: [localeId], references: [id])
+  localeId Int
+}
+
+model Tag {
+  id       Int            @id @default(autoincrement())
+  title    String
+  quotes   QuotesOnTags[]
+  locale   Locale         @relation(fields: [localeId], references: [id])
+  localeId Int
+}
+
+model QuotesOnTags {
+  quote   Quote @relation(fields: [quoteId], references: [id])
+  quoteId Int
+  tag     Tag   @relation(fields: [tagId], references: [id])
+  tagId   Int
+
+  @@id([quoteId, tagId])
+}
+
+model Post {
+  id              Int     @id @default(autoincrement())
+  title           String
+  image           String
+  thumbImage      String
+  alternativeText String?
+  locale          Locale  @relation(fields: [localeId], references: [id])
+  localeId        Int
+}
