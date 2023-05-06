@@ -1,7 +1,11 @@
-export default function HomeScreen() {
+import { StyledScreen } from './styled';
+
+export default function HomeScreen({ quotes }) {
   return (
-    <main>
-      Home page
-    </main>
+    <StyledScreen>
+      {quotes.map(({ id, quote }) => (
+        <p key={id}>{quote}</p>
+      ))}
+    </StyledScreen>
   );
 }

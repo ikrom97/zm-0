@@ -18,7 +18,7 @@ model User {
 model Locale {
   id     Int     @id @default(autoincrement())
   title  String
-  locale String
+  locale String  @unique
   Quote  Quote[]
   Tag    Tag[]
   Post   Post[]

@@ -3,7 +3,6 @@ import { Copyright, FooterContainer, Icon, StyledFooter } from './styled';
 import dayjs from 'dayjs';
 import Text from '@/components/ui/text/text';
 import Link from 'next/link';
-import { EMAIL } from '@/const';
 
 export default function Footer() {
   const { t } = useTranslation('common');
@@ -16,7 +15,10 @@ export default function Footer() {
           <Text>{t('copyright')}<br />{`2017-${dayjs().format('YYYY')}`}</Text>
         </Copyright>
 
-        <Text>{t('forFeedback')}<br /><Link href={`mailto:${EMAIL}`}>{EMAIL}</Link></Text>
+        <Text>
+          {t('forFeedback')}<br />
+          <Link href="mailto:info@zafarmirzo.com">info@zafarmirzo.com</Link>
+        </Text>
       </FooterContainer>
     </StyledFooter>
   );

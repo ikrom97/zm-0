@@ -1,20 +1,22 @@
-import Layout from "@/components/layouts/layout/layout";
-import HomeScreen from "@/components/screens/home-screen/home-screen";
+import Layout from '@/components/layouts/layout/layout';
+import HomeScreen from '@/components/screens/home-screen/home-screen';
+import { QuoteService } from '@/services/quote-service';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-export default function Home() {
+export default function Home(props) {
   return (
     <Layout>
-      <HomeScreen />
+      <HomeScreen {...props} />
     </Layout>
   );
 }
 
-export async function getStaticProps({ locale }) {
+export async function getServerSideProps({ locale, query }) {
+  const quotes = await QuoteService.paginate(locale, query.page);
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
+      quotes,
     },
-    revalidate: 60,
   }
 }
