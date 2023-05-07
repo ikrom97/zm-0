@@ -9,7 +9,7 @@ export default async function handler(req, res) {
       const locale = await prisma.locale.findFirst({
         where: {
           locale: req.query.locale,
-        }
+        },
       });
       if (page && page > 1) {
         skip = (page - 1) * take;
@@ -20,6 +20,13 @@ export default async function handler(req, res) {
         where: {
           localeId: locale.id,
         },
+        include: {
+          tags: {
+            include: {
+              tag: true,
+            }
+          },
+        }
       });
       return res.status(200).json(data);
     } catch (error) {

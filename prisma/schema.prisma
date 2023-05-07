@@ -8,53 +8,61 @@ datasource db {
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  name     String
-  surname  String
-  login    String @unique
-  password String
+  id        Int      @id @default(autoincrement())
+  name      String
+  surname   String
+  login     String   @unique
+  password  String
+  createdAt DateTime @default(now())
 }
 
 model Locale {
-  id     Int     @id @default(autoincrement())
-  title  String
-  locale String  @unique
-  Quote  Quote[]
-  Tag    Tag[]
-  Post   Post[]
+  id        Int      @id @default(autoincrement())
+  title     String
+  locale    String   @unique
+  Quote     Quote[]
+  Tag       Tag[]
+  Post      Post[]
+  createdAt DateTime @default(now())
 }
 
 model Quote {
-  id       Int            @id @default(autoincrement())
-  quote    String
-  tags     QuotesOnTags[]
-  locale   Locale         @relation(fields: [localeId], references: [id])
-  localeId Int
+  id        Int            @id @default(autoincrement())
+  quote     String
+  slug      String         @unique
+  tags      QuotesOnTags[]
+  locale    Locale         @relation(fields: [localeId], references: [id])
+  localeId  Int
+  createdAt DateTime       @default(now())
 }
 
 model Tag {
-  id       Int            @id @default(autoincrement())
-  title    String
-  quotes   QuotesOnTags[]
-  locale   Locale         @relation(fields: [localeId], references: [id])
-  localeId Int
+  id        Int            @id @default(autoincrement())
+  title     String
+  slug      String         @unique
+  quotes    QuotesOnTags[]
+  locale    Locale         @relation(fields: [localeId], references: [id])
+  localeId  Int
+  createdAt DateTime       @default(now())
 }
 
 model QuotesOnTags {
-  quote   Quote @relation(fields: [quoteId], references: [id])
-  quoteId Int
-  tag     Tag   @relation(fields: [tagId], references: [id])
-  tagId   Int
+  quote     Quote    @relation(fields: [quoteId], references: [id])
+  quoteId   Int
+  tag       Tag      @relation(fields: [tagId], references: [id])
+  tagId     Int
+  createdAt DateTime @default(now())
 
   @@id([quoteId, tagId])
 }
 
 model Post {
-  id              Int     @id @default(autoincrement())
+  id              Int      @id @default(autoincrement())
   title           String
   image           String
   thumbImage      String
   alternativeText String?
-  locale          Locale  @relation(fields: [localeId], references: [id])
+  locale          Locale   @relation(fields: [localeId], references: [id])
   localeId        Int
+  createdAt       DateTime @default(now())
 }

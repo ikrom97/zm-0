@@ -1,9 +1,16 @@
 {
+  "title": "Авторский сайт Зафара Мирзо",
   "toHomePage": "На главную страницу",
   "thoughts": "Мысли",
   "tags": "Теги",
   "aboutAuthor": "Об авторе",
   "toggleMenu": "Переключить меню",
   "copyright": "© Zafar Mirzo",
-  "forFeedback": "Обратная связь:"
+  "forFeedback": "Обратная связь:",
+  "facebook": "Фейсбук",
+  "instagram": "Инстаграм",
+  "twitter": "Твиттер",
+  "telegram": "Телеграм",
+  "copy": "Скопировать",
+  "share": "Поделиться"
 }

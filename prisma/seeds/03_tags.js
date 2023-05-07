@@ -1,3 +1,6 @@
+const slugify = require('slugify');
+const uniqid = require('uniqid'); 
+
 const tags = [
   'Агностицизм',
   'Агрессивность',
@@ -297,6 +300,7 @@ const seedTags = async (prisma) => {
     await prisma.tag.create({
       data: {
         title: tag,
+        slug: `${slugify(tag).toLowerCase()}-${uniqid.time()}`,
         localeId: 1,
       }
     });
