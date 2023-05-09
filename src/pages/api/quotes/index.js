@@ -14,7 +14,7 @@ export default async function handler(req, res) {
       if (page && page > 1) {
         skip = (page - 1) * take;
       }
-      const data = await prisma.quote.findMany({
+      const quotes = await prisma.quote.findMany({
         skip,
         take,
         where: {
@@ -28,6 +28,11 @@ export default async function handler(req, res) {
           },
         }
       });
+
+      const total = await prisma.quote.count();
+      const lastPage = Math.ceil(total / 10)
+
+      const data = { quotes, lastPage };
       return res.status(200).json(data);
     } catch (error) {
       return res.status(500).json(error);

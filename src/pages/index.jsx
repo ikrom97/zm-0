@@ -12,11 +12,12 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps({ locale, query }) {
-  const quotes = await QuoteService.paginate(locale, query.page);
+  const data = await QuoteService.paginate(locale, query.page);
+  
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
-      quotes,
+      data,
     },
   }
 }
