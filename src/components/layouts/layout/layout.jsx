@@ -11,6 +11,10 @@ export default function Layout({ children }) {
       <Head>
         <meta name="robots" content="noindex" />
         <title>{t('title')}</title>
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicons/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="favicons/180x180.png" />
+        <link rel="manifest" href="manifest.webmanifest" />
       </Head>
 
       <Header />
