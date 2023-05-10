@@ -22,11 +22,11 @@ export const SocialLink = styled(({ icon, ...rest }) => (
   border-radius: 4px;
   transition: 0.3s;
   visibility: hidden;
-  display: none;
+  opacity: 0;
 
   ${Wrapper}:hover & {
     visibility: visible;
-    display: flex;
+    opacity: 1;
   }
 `;
 
