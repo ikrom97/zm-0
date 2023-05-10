@@ -36,5 +36,9 @@ export const NavigationItem = styled(({ isActive, children, ...rest }) => (
   @media (min-width: 768px) {
     border-top: none;
     border-radius: 8px;
+
+    ${({ isActive, theme }) => isActive && `
+    background-color: ${theme.secondary};
+  `}
   }
 `;

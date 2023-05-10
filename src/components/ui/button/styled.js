@@ -7,6 +7,7 @@ export const StyledButton = styled.button`
   gap: 8px;
   min-width: 40px;
   min-height: 40px;
+  max-width: max-content;
   text-decoration: none;
   border: none;
   background-color: ${({ theme }) => theme.primary};
