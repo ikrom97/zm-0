@@ -10,6 +10,12 @@ export const StyledHeader = styled.header`
   @media (min-width: 768px) {
     padding: 24px 0;
   }
+
+  @media (min-width: 1200px) {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
 `;
 
 export const HeaderContainer = styled(Container)`

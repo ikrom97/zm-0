@@ -1,10 +1,9 @@
-import QuoteCard from '@/components/ui/quote-card/quote-card';
-import { Container, Main, Quotes, QuotesPagination } from './styled';
+import { Container, Main } from './styled';
 import Posts from '@/components/ui/posts/posts';
 import { useState } from 'react';
 import SelectedPost from '@/components/ui/selected-post/selected-post';
 
-export default function HomeScreen({ data, posts }) {
+export default function TagsScreen({ posts }) {
   const [selectedPost, setSelectedPost] = useState(null);
   const handlePostClick = (post) => setSelectedPost(post);
 
@@ -12,16 +11,7 @@ export default function HomeScreen({ data, posts }) {
     <>
       <Container>
         <Main>
-          <Quotes>
-            {data.quotes.map((quote) => (
-              <QuoteCard
-                key={quote.id}
-                quote={quote}
-              />
-            ))}
-          </Quotes>
 
-          <QuotesPagination lastPage={data.lastPage} />
         </Main>
 
         <Posts

@@ -16,8 +16,8 @@ export const StyledPosts = styled.aside`
     overflow-x: hidden;
     padding-right: 10px;
     position: sticky;
-    top: 32px;
-    height: calc(100vh - 64px);
+    top: 112px;
+    height: calc(100vh - 136px);
 
     &::-webkit-scrollbar {
       width: 6px;
