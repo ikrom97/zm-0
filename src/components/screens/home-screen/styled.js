@@ -16,8 +16,7 @@ export const Container = styled(StyledContainer)`
 
   @media (min-width: 1200px) {
     flex-direction: row-reverse;
-    margin-top: 32px;
-    margin-bottom: 32px;
+    gap: 16px;
   }
 `;
 

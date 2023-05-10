@@ -10,10 +10,6 @@ export const StyledHeader = styled.header`
   @media (min-width: 768px) {
     padding: 24px 0;
   }
-
-  @media (min-width: 1200px) {
-    padding: 32px 0;
-  }
 `;
 
 export const HeaderContainer = styled(Container)`
