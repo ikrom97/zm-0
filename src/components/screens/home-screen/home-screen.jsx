@@ -21,7 +21,9 @@ export default function HomeScreen({ data, posts }) {
             ))}
           </Quotes>
 
-          <QuotesPagination lastPage={data.lastPage} />
+          {data.lastPage > 10 &&
+            <QuotesPagination lastPage={data.lastPage} />
+          }
         </Main>
 
         <Posts

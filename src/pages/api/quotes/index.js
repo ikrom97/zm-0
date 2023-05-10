@@ -29,7 +29,11 @@ export default async function handler(req, res) {
         }
       });
 
-      const total = await prisma.quote.count();
+      const total = await prisma.quote.count({
+        where: {
+          localeId: locale.id,
+        },
+      });
       const lastPage = Math.ceil(total / 10)
 
       const data = { quotes, lastPage };
