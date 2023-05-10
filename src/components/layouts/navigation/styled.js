@@ -29,6 +29,7 @@ export const NavigationItem = styled(({ isActive, children, ...rest }) => (
 ))`
   border-radius: 0;
   border-top: 1px solid ${({ theme }) => theme.gray};
+  max-width: none;
   ${({ isActive, theme }) => isActive && `
     background-color: ${theme.secondary};
   `}
