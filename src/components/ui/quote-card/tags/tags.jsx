@@ -2,16 +2,17 @@ import { AppRoute } from '@/const';
 import { Tag, TagList } from './styled';
 import TriangleIcon from '@/components/icons/triangle-icon';
 
-export default function Tags({ tags }) {
+export default function Tags({ tags, currentTag }) {
   return (
     <TagList>
-      {tags.map(({ tag }) => (
+      {tags?.map(({ id, slug, title }) => (
         <Tag
-          key={tag.id}
-          href={AppRoute.TagsSelected(tag.slug)}
+          key={id}
+          href={AppRoute.TagsSelected(slug)}
+          isCurrent={currentTag?.id === id}
         >
           <TriangleIcon />
-          {tag.title}
+          {title}
         </Tag>
       ))}
     </TagList>

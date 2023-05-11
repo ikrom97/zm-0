@@ -2,10 +2,27 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  max-width: 24px;
+`;
+
+export const LinksWrapper = styled.div`
+  padding: 4px;
+  background-color: ${({ theme }) => theme.white};
+  display: flex;
   gap: 8px;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s;
+
+  ${Wrapper}:hover & {
+    visibility: visible;
+    opacity: 1;
+  }
 `;
 
 export const SocialLink = styled(({ icon, ...rest }) => (
@@ -20,14 +37,6 @@ export const SocialLink = styled(({ icon, ...rest }) => (
   color: ${({ theme }) => theme.white};
   background-color: ${({ theme }) => theme.secondary};
   border-radius: 4px;
-  transition: 0.3s;
-  visibility: hidden;
-  opacity: 0;
-
-  ${Wrapper}:hover & {
-    visibility: visible;
-    opacity: 1;
-  }
 `;
 
 export const ShareButton = styled.button`

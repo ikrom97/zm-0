@@ -1,10 +1,11 @@
 import Layout from '@/components/layouts/layout/layout';
 import HomeScreen from '@/components/screens/home-screen/home-screen';
-import { PostService } from '@/services/post-service';
-import { QuoteService } from '@/services/quote-service';
+import { getPosts } from '@/services/post-services';
+import { paginateQuotes } from '@/services/quote-services';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 export default function Home(props) {
+  
   return (
     <Layout>
       <HomeScreen {...props} />
@@ -13,13 +14,13 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps({ locale, query }) {
-  const data = await QuoteService.paginate(locale, query.page);
-  const posts = await PostService.getAll(locale);
+  const quotesPagination = await paginateQuotes(locale, query.page);
+  const posts = await getPosts(locale);
 
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
-      data,
+      quotesPagination,
       posts,
     },
   }

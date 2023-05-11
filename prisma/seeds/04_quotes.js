@@ -1,5 +1,3 @@
-const uniqid = require('uniqid');
-
 const quotes = [
   'Сам факт нашего существования – это чудо, вызывающее удивление великих умов.',
   'Законы мироздания – это возможность жить вечно.Главное – гармония и дружба с ними.',
@@ -409,12 +407,12 @@ const seedQuotes = async (prisma) => {
     const item = await prisma.quote.create({
       data: {
         quote,
-        slug: uniqid(),
+        slug: Date.now().toString().substring(8),
         localeId: 1,
       }
     });
 
-    for (let i = 1; i < 4; i++) {
+    for (let i = 1; i < 12; i++) {
       await prisma.quotesOnTags.create({
         data: {
           quoteId: item.id,

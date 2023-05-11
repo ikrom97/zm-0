@@ -1,7 +1,7 @@
 import Layout from '@/components/layouts/layout/layout';
 import TagsScreen from '@/components/screens/tags-screen/tags-screen';
-import { PostService } from '@/services/post-service';
-import { TagService } from '@/services/tag-service';
+import { getPosts } from '@/services/post-services';
+import { getTags } from '@/services/tag-services';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 export default function Tags(props) {
@@ -12,9 +12,9 @@ export default function Tags(props) {
   );
 }
 
-export async function getServerSideProps({ locale }) {
-  const posts = await PostService.getAll(locale);
-  const tags = await TagService.getAll(locale);
+export async function getStaticProps({ locale }) {
+  const posts = await getPosts(locale);
+  const tags = await getTags(locale);
 
   return {
     props: {
@@ -22,5 +22,6 @@ export async function getServerSideProps({ locale }) {
       posts,
       tags,
     },
+    revalidate: 60,
   }
 }

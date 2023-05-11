@@ -14,7 +14,7 @@ export const StyledHeader = styled.header`
   @media (min-width: 1200px) {
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 2;
   }
 `;
 

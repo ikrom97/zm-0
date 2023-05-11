@@ -4,16 +4,17 @@ import Posts from '@/components/ui/posts/posts';
 import { useState } from 'react';
 import SelectedPost from '@/components/ui/selected-post/selected-post';
 
-export default function HomeScreen({ data, posts }) {
+export default function HomeScreen({ quotesPagination, posts }) {
   const [selectedPost, setSelectedPost] = useState(null);
   const handlePostClick = (post) => setSelectedPost(post);
+  const { quotes, lastPage } = quotesPagination;
 
   return (
     <>
       <Container>
         <Main>
           <Quotes>
-            {data.quotes.map((quote) => (
+            {quotes?.map((quote) => (
               <QuoteCard
                 key={quote.id}
                 quote={quote}
@@ -21,8 +22,8 @@ export default function HomeScreen({ data, posts }) {
             ))}
           </Quotes>
 
-          {data.lastPage > 10 &&
-            <QuotesPagination lastPage={data.lastPage} />
+          {lastPage > 10 &&
+            <QuotesPagination lastPage={lastPage} />
           }
         </Main>
 

@@ -1,7 +1,7 @@
 import { i18n, useTranslation } from 'next-i18next';
 import { CloseButton, Input, Label, Modal, ModalTitle, Result, ResultItem, ResultLink, SearchForm } from './styled';
 import { useState } from 'react';
-import { QuoteService } from '@/services/quote-service';
+import { QuoteService } from '@/services/quote-services';
 import CloseIcon from '@/components/icons/close-icon';
 
 export default function SearchModal({ onClose }) {
@@ -13,7 +13,6 @@ export default function SearchModal({ onClose }) {
     const keyword = evt.target.value;
     setKeyword(keyword);
     const quotes = await QuoteService.search(i18n.language, keyword);
-    console.log(quotes);
     setResult(quotes);
   };
 
@@ -44,8 +43,7 @@ export default function SearchModal({ onClose }) {
                   <ResultLink as="span">{quote.quote}</ResultLink>
                 </ResultItem>
               ))}
-          </Result>
-        }
+          </Result>}
       </SearchForm>
 
       <CloseButton onClick={() => onClose()}>
