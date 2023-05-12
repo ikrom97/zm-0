@@ -1,23 +1,24 @@
 import Layout from '@/components/layouts/layout/layout';
-import TagsSelectedScreen from '@/components/screens/tags-selected-screen/tags-selected-screen';
-import { getTagBySlug, getTags } from '@/services/tag-services';
+import QuotesSelectedScreen from '@/components/screens/quotes-selected-screen/quotes-selected-screen';
+import { getQuoteBySlug, getQuotes } from '@/services/quote-services';
+import { getTags } from '@/services/tag-services';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-export default function TagsSelected(props) {
+export default function ThoughtsSelected(props) {
   return (
     <Layout>
-      <TagsSelectedScreen {...props} />
+      <QuotesSelectedScreen {...props} />
     </Layout>
   );
 }
 
 export async function getStaticPaths() {
-  const tags = await getTags();
+  const quotes = await getQuotes();
 
   return {
-    paths: tags.map((tag) => ({
+    paths: quotes.map((quote) => ({
       params: {
-        slug: tag.slug,
+        slug: quote.slug,
       }
     })),
     fallback: 'blocking',
@@ -25,13 +26,13 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ locale, params }) {
-  const selectedTag = await getTagBySlug(params.slug);
+  const selectedQuote = await getQuoteBySlug(params.slug);
   const tags = await getTags(locale);
 
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
-      selectedTag,
+      selectedQuote,
       tags,
     },
     revalidate: 60,

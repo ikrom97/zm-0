@@ -6,6 +6,7 @@ export const Card = styled.blockquote`
   margin: 0;
   background-color: ${({ theme }) => theme.white};
   border-radius: 8px;
+  flex-grow: 1;
 `;
 
 export const Top = styled.div`

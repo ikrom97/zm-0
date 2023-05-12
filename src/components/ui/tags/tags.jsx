@@ -14,7 +14,7 @@ export default function Tags({ tags, currentTag }) {
           <ListItem key={id}>
             <Tag
               href={AppRoute.TagsSelected(slug)}
-              isCurrent={currentTag.id === id}
+              isCurrent={currentTag?.id === id}
             >
               {title}
             </Tag>
