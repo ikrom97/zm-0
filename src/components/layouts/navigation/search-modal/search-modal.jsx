@@ -1,8 +1,9 @@
 import { i18n, useTranslation } from 'next-i18next';
 import { CloseButton, Input, Label, Modal, ModalTitle, Result, ResultItem, ResultLink, SearchForm } from './styled';
 import { useState } from 'react';
-import { QuoteService } from '@/services/quote-services';
 import CloseIcon from '@/components/icons/close-icon';
+import { AppRoute } from '@/const';
+import { searchQuotes } from '@/services/quote-services';
 
 export default function SearchModal({ onClose }) {
   const { t } = useTranslation();
@@ -12,7 +13,7 @@ export default function SearchModal({ onClose }) {
   const handleInputChange = async (evt) => {
     const keyword = evt.target.value;
     setKeyword(keyword);
-    const quotes = await QuoteService.search(i18n.language, keyword);
+    const quotes = await searchQuotes(i18n.language, keyword);
     setResult(quotes);
   };
 
@@ -40,7 +41,12 @@ export default function SearchModal({ onClose }) {
               :
               result.map((quote) => (
                 <ResultItem key={quote.id}>
-                  <ResultLink as="span">{quote.quote}</ResultLink>
+                  <ResultLink
+                    href={AppRoute.ThoughtsSelected(quote.slug)}
+                    onClick={() => onClose()}
+                  >
+                    {quote.quote}
+                  </ResultLink>
                 </ResultItem>
               ))}
           </Result>}
